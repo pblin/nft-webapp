@@ -10,6 +10,7 @@ interface InlineEditProps {
   handleSubmit: any;
   index: number;
   field: string;
+  children: any;
 }
 
 interface InlineEditState {

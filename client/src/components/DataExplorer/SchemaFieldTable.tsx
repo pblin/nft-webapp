@@ -173,6 +173,7 @@ class SchemaFieldTable extends React.Component<ComponentProps, ComponentState> {
         </TableBody>
       </Table>
       <TablePagination
+        onPageChange={(ev)=>{}}
         rowsPerPageOptions={[5, 10, 25, 50, 100]}
         component="div"
         count={schemaFields.length}

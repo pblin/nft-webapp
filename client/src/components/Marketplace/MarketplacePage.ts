@@ -40,6 +40,7 @@ function mapStateToProps(state: any) {
     datasetDialog: datasetDialogSelector(state),
     confirmDeleteDialog: confirmDeleteDialogSelector(state),
     marketplace: marketplaceSelector(state),
+    // @ts-ignore
     purchasableDatasets: getPurchasableDatasets(state),
     purchasedDatasets: purchasedDatasets && purchasedDatasets.bought || [],
     loading: getLoadingSelector(state)

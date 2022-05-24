@@ -36,6 +36,7 @@ const MarketplaceToolbar = (
 
   return(
     <Toolbar className="marketplace-toolbar">
+      {/* @ts-ignore*/}
       <Hidden xsDown>
         <div className={`filter-container`}>
           {toolbarOptions.map((option, index) => (
@@ -49,6 +50,7 @@ const MarketplaceToolbar = (
           ))}
         </div>
       </Hidden>
+      {/* @ts-ignore*/}
       <Hidden smUp>
         <FormControl className={"filter-container"}>
           <Select value={schemaFilter} onChange={handleSchemaChange}>

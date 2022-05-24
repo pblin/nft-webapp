@@ -26,7 +26,7 @@ import {
 import SchemaList from "../DatasetManager/SchemaList/SchemaList";
 import MarketplaceToolbar from "../Marketplace/MarketplaceToolbar";
 import {ToolbarOption} from "../Marketplace/ToolbarOption";
-import {Grid} from "@material-ui/core";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography} from "@material-ui/core";
 import "./datasetInfo.scss";
 import BasicInfoCard from "./BasicInfoCard";
 import {submit} from 'redux-form';
@@ -38,6 +38,9 @@ import BasicInfoOwnerCard from './BasicInfoOwnerCard';
 import SendEmailDialog from "./SendEmailDialog";
 import {DatasetInquiryPayload} from "../../services/payloads/EmailPayload";
 import DynamicTable from '../Common/Table/DynamicTable';
+import QRCode from "react-qr-code";
+import { BUYWITHETHADDRESS } from "../ConfigEnv";
+import history from "../../utils/history";
 
 interface ComponentProps {
   match: any;
@@ -56,6 +59,7 @@ interface ComponentProps {
 
 interface ComponentState {
   filter: string;
+  showBuyWithEthQR: boolean;
 }
 
 class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
@@ -93,7 +97,10 @@ class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
 
   componentDidMount(): void {
     //Set local state
-    this.setState({filter: 'schema'})
+    this.setState({
+      filter: 'schema',
+      showBuyWithEthQR: false
+    })
   }
 
   componentWillMount(): void {
@@ -165,6 +172,10 @@ class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
     }
   }
 
+  navToProfile() {
+    history.push('/profile');
+  }
+
   renderMarketPlace() {
     return (
       <div className={"app-section-wrapper-90"}>
@@ -182,7 +193,14 @@ class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
               dataset={this.props.dataset}
               onMoreOptions={this.onMoreOptionsMenuChange}
               isMoreOptionsOpened={this.props.datasetInfo.moreOptionsOpened}
-              onBuy={this.props.action.buyDataset}
+              onBuy={(...a)=>{
+                if(this.props.profile && this.props.profile.id){
+                  this.props.action.buyDataset(a);
+                }else{
+                  this.navToProfile();
+                }
+              }}
+              toggleBuyWithEthQR={this.toggleBuyWithEthQR}
               onGetSampleData={this.getSampleDataEmail}
               handleSendEmail={() => this.props.action.changeSendEmailDialog(true)}
               user={this.props.profile}
@@ -210,6 +228,15 @@ class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
           />
         </Grid>
       )
+  }
+
+  toggleBuyWithEthQR = () => {
+    this.setState(({showBuyWithEthQR})=>{
+      showBuyWithEthQR = !showBuyWithEthQR;
+      return {
+        showBuyWithEthQR
+      }
+    })
   }
 
   render() {
@@ -242,6 +269,29 @@ class DatasetInfo extends React.Component<ComponentProps, ComponentState> {
           onSendEmail={() => {this.props.action.submit('sendEmail')}}
           onSubmit={this.onSendEmailSubmit}
         />
+        {this.state && this.state.showBuyWithEthQR && <Dialog
+          open
+          onClose={this.toggleBuyWithEthQR}
+          >
+          <DialogTitle>
+            <Typography className={"dialog-header"}>
+              <span className="bold">Scan QR to Pay</span>
+            </Typography>
+          </DialogTitle>
+          <DialogContent>
+            <QRCode
+              value={BUYWITHETHADDRESS || ''}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              color={"primary"}
+              variant={"contained"}
+              onClick={this.toggleBuyWithEthQR}>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>}
       </div>
     )
   }

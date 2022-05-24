@@ -1,10 +1,11 @@
 import {v1 as uuid} from 'uuid';
+import { getBaseURL } from '../utils/CommonHelper';
 import {config} from "./ServiceConfig";
 
 export class DatasetService {
   baseUrl: string;
   constructor() {
-    this.baseUrl = location.protocol+'//'+location.hostname + ":9000";
+    this.baseUrl = getBaseURL();
   }
 
   async postDataset(basicInfo: any, schema: any[], id: any, stage: any, schemaName: string) {

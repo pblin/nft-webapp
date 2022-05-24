@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {Grid, TextField} from "@material-ui/core";
+import {Box, Button, Grid, Link, TextField} from "@material-ui/core";
 import {ReduxFormValidator} from "../Common/Error/ReduxFormValidator";;
 import {ERROR_TYPE} from "../Common/Error/ErrorType";
 import {connect} from "react-redux";
@@ -8,6 +8,7 @@ import {emailSelector, profileSelector} from "../../store/profile/profileSelecto
 
 interface CustomerFormProps {
    onSubmit: any;
+   initialValues: any;
   //pristine: boolean;
   //invalid: boolean;
 }
@@ -31,6 +32,30 @@ const renderTextField = ({input, label, meta, custom}) => {
       />
   </Grid>
 )
+};
+
+
+const AnchorLink = ({href, label, title, custom}) => {
+  return (
+    <Grid 
+      item 
+      xs={custom.gridXs} 
+      sm={custom.gridSm}
+      md={custom.gridMd}
+    >
+      <Link 
+        href={href} 
+        underline="hover"
+        title={title}
+      >
+        <Button 
+          variant="text"
+        >
+          {label}
+        </Button>
+      </Link>
+      <Box sx={{ mb: 4 }} />
+  </Grid>)
 };
 
 const reduxFormValidator = new ReduxFormValidator();
@@ -62,6 +87,13 @@ const validate = (values) => {
 
 class CustomerForm extends Component<CustomerFormProps> {
   render() {
+
+    const {
+      walletAddress1,
+      walletAddress2,
+      walletURLPrefix
+    } = this.props.initialValues || {};
+
     return (
       <form onSubmit={this.props.onSubmit}>
       <Grid spacing={4} container={true} >
@@ -107,20 +139,18 @@ class CustomerForm extends Component<CustomerFormProps> {
           type="text"
           custom={ {helperText: "Address", gridXs: 12, gridSm: 12} }
         />
-        <Field
-          label="Wallet Address 1"
-          component={renderTextField}
-          name="walletAddress1"
-          type="text"
-          custom={ {helperText: "Wallet Address 1", gridXs: 12, gridSm: 6, disabled: true} }
-        />
-        <Field
-          label="Wallet Address 2"
-          component={renderTextField}
-          name="walletAddress2"
-          type="text"
-          custom={ {helperText: "Wallet Address 2", gridXs: 12, gridSm: 6, disabled: true} }
-        />
+        {walletAddress1 && <AnchorLink
+          custom={{gridXs: 12, gridSm: 8, gridMd: 6}}
+          href={walletURLPrefix + walletAddress1}
+          title='Wallet Address 1'
+          label={walletAddress1}
+        />}
+        {walletAddress2 && <AnchorLink
+          custom={{gridXs: 12, gridSm: 8, gridMd: 6}}
+          href={walletURLPrefix + walletAddress2}
+          title='Wallet Address 2'
+          label={walletAddress2}
+        />}
       </Grid>
     </form>
   );
@@ -143,8 +173,9 @@ function mapStateToProps(state) {
         secondaryEmail: profile['secondary_email'],
         phone: profile['phone'],
         address: profile['address'],
-        walletAddress1: 'https://rinkeby.etherscan.io/address/' + profile['wallet_address_1'],
-        walletAddress2: profile['wallet_address_2']
+        walletAddress1: profile['wallet_address_1'],
+        walletAddress2: profile['wallet_address_2'],
+        walletURLPrefix: 'https://rinkeby.etherscan.io/address/' 
       }
     }
 }

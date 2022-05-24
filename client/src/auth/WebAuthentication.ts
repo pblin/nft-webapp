@@ -105,13 +105,20 @@ export class WebAuthentication implements Auth0Authentication {
   @autobind
   logout(): void {
     // Clear access token and ID token from local storage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    localStorage.removeItem('email');
-    localStorage.removeItem('authenticated');
-    localStorage.removeItem('profile');
-    localStorage.removeItem('pendingProfileQuery');
+    const localStorageKeysToRemove = [
+      'access_token',
+      'id_token',
+      'expires_at',
+      'email',
+      'authenticated',
+      'profile',
+      'pendingProfileQuery',
+      'first_name',
+      'last_name',
+      'idTokenPayload',
+      'topics'
+    ];
+    localStorageKeysToRemove.forEach(key => localStorage.removeItem(key));
     // navigate to the home route
     history.push('/home');
 

@@ -5,6 +5,7 @@ import {WizardStep} from "./WizardStep";
 const DatasetStepper = ({wizardSteps, currentStep}) => {
     return(
       <div>
+        {/* @ts-ignore*/}
         <Hidden xsDown>
           <Stepper activeStep={currentStep} className={"stepper"}>
             {wizardSteps.map( (wizardStep: WizardStep) => (<Step  color={"secondary"} key={wizardStep.label} completed={wizardStep.completed}>

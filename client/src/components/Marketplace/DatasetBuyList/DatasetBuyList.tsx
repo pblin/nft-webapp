@@ -193,6 +193,7 @@ class DatasetBuyList extends React.Component<ComponentProps, ComponentState>{
           ))}
         </React.Fragment>
         <TablePagination
+          onPageChange={(ev)=>{}}
           rowsPerPageOptions={[5, 10, 25, 50, 100]}
           component="div"
           count={datasets.length}

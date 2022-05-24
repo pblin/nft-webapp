@@ -1,7 +1,7 @@
-import React, { SFC } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Callback, DashboardPage, Customer } from '../components';
 import Home from '../pages/Home';
-import DataExplorerPage from "../components/DataExplorer/DataExplorerPage";
+// import DataExplorerPage from "../components/DataExplorer/DataExplorerPage";
 import { Route, RouteComponentProps, Redirect } from 'react-router';
 import { Router } from 'react-router-dom';
 import { WebAuthentication } from '../auth/WebAuthentication';
@@ -51,7 +51,7 @@ const PrivateVerifiedRoute = ({component: Component, authenticated, ...rest}) =>
   )
 };
 
-const Routes: SFC<{}> = () => {
+const Routes: FunctionComponent<{}> = () => {
   return (
     <div>
       <Router history={history}>
@@ -69,12 +69,12 @@ const Routes: SFC<{}> = () => {
               auth={auth}
               authenticated={auth.authenticated}
             />
-            <PrivateVerifiedRoute
+            {/* <PrivateVerifiedRoute
               path="/dataexplorer"
               component={DataExplorerPage}
               auth={auth}
               authenticated={auth.authenticated}
-            />
+            /> */}
             <PrivateVerifiedRoute
               path="/profile"
               component={Customer}

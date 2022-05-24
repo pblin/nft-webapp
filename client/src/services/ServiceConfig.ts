@@ -1,3 +1,5 @@
+import { getBaseURL } from "../utils/CommonHelper";
+
 export const config = {
-  serverBase: location.protocol+'//'+location.hostname + ":9000"
+  serverBase: getBaseURL()
 };
