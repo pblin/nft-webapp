@@ -197,6 +197,7 @@ class PersistentDrawerLeft extends React.Component <AppProps> {
               profile={profileObj}/>
           </AppBar>
           <AppSideDrawer
+            // @ts-ignore
             width={240}
             isResponsiveMenuOpen={open}
             onResponsiveMenuClose={this.handleDrawerClose}

@@ -1,10 +1,11 @@
 import {config} from "./ServiceConfig";
 import {OrderPayload} from "./payloads/OrderPayload";
+import { getBaseURL } from "../utils/CommonHelper";
 
 class OrderService {
   baseUrl: string;
   constructor() {
-      this.baseUrl = location.protocol+'//'+location.hostname + ":9000";
+      this.baseUrl = getBaseURL();
   }
 
   async getOrderHistory(userId: any) {

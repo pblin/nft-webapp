@@ -1,9 +1,10 @@
+import { getBaseURL } from "../utils/CommonHelper";
 import {DatasetInquiryPayload} from "./payloads/EmailPayload";
 
 export class EmailService {
   baseUrl: string;
   constructor() {
-    this.baseUrl = location.protocol+'//'+location.hostname + ":9000";
+    this.baseUrl = getBaseURL();
   }
 
   async retrieveSampleData(email: string, datasetId: string, datasetName: string) {

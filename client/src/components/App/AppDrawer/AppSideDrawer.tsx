@@ -16,7 +16,7 @@ import {withRouter} from "react-router";
 import cx from "classnames";
 
 //ICONS
-import DashboardIcon from "@material-ui/icons/Dashboard";
+// import DashboardIcon from "@material-ui/icons/Dashboard";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExploreIcon from "@material-ui/icons/Explore";
 import CreditCardIcon from '@material-ui/icons/CreditCard';
@@ -38,8 +38,8 @@ class AppSideDrawer extends React.Component <AppProps> {
 
   appLinks: AppLink[] = [
     new AppLink('Home', '/', (<HomeIcon/>)),
-    new AppLink('Marketplace', '/marketplace', (<DashboardIcon/>)),
-    new AppLink('Token Listing', '/dataexplorer', (<ExploreIcon/>)),
+    // new AppLink('Marketplace', '/marketplace', (<DashboardIcon/>)),
+    new AppLink('Token Listing', '/marketplace', (<ExploreIcon/>)),
     new AppLink('Etherscan', 'https://rinkeby.etherscan.io/address/0x49FC8385c3BeA67B84799e4Bde1fAD7B6829526e', (<NotificationsIcon/>), 'global'),
     new AppLink('Order History', '/order/history', <CreditCardIcon/>),
     new AppLink('Profie', '/profile', (<PersonIcon/>)),
@@ -174,6 +174,7 @@ class AppSideDrawer extends React.Component <AppProps> {
       if(this.props.authenticated) {
         return (
           <React.Fragment>
+            {/* @ts-ignore*/}
             <Hidden xsDown>
               <Drawer
                 open={true}
@@ -199,6 +200,7 @@ class AppSideDrawer extends React.Component <AppProps> {
                 </div>
               </Drawer>
             </Hidden>
+            {/* @ts-ignore*/}
             <Hidden smUp>
               <Drawer
                 open={this.props.isResponsiveMenuOpen}
@@ -235,6 +237,7 @@ class AppSideDrawer extends React.Component <AppProps> {
     const StyledComponent = withStyles(styles)(content);
 
     return (
+      // @ts-ignore
       <StyledComponent/>
     )
   }

@@ -6,13 +6,13 @@ import Routes from './utils/Routes';
 import {Provider} from "react-redux";
 import './index.css';
 import 'typeface-roboto';
-import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
+import {MuiThemeProvider, createTheme} from "@material-ui/core/styles";
 import {SnackbarProvider} from "notistack";
 import {AppEventEmitter} from "./utils/AppEventEmitter";
 import registerServiceWorker, {unregister} from "./registerServiceWorker";
 import AppVars from "./styles/appVars";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: AppVars.mainFont,
   },

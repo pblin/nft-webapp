@@ -17,8 +17,7 @@ const SendEmailDialog = ({isOpen = true, onCancel, onSendEmail, onSubmit}) => {
     >
       <DialogTitle id="alert-dialog-title">Send Email To The Dataset Owner</DialogTitle>
       <DialogContent>
-        <SendEmailForm onSubmit={onSubmit}>
-        </SendEmailForm>
+        <SendEmailForm onSubmit={onSubmit}/>
       </DialogContent>
       <DialogActions>
         <Button

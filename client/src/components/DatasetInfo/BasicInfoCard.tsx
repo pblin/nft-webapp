@@ -10,6 +10,7 @@ import {
   MenuItem,
   Divider,
   Typography,
+  Button,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PersonIcon from "@material-ui/icons/Person";
@@ -24,7 +25,8 @@ const BasicInfoCard = (
     onBuy,
     onGetSampleData,
     handleSendEmail,
-    user
+    user,
+    toggleBuyWithEthQR
   }) => {
   const renderSearchTerms = (terms: any[]) => {
     if(!terms) {
@@ -83,12 +85,21 @@ const BasicInfoCard = (
           panelLabel={`Pay ${dataset['price_high']}$`}
           amount={0} //Amount in cents $9.99
           token={onToken}
-          label="Buy"
+          label="Buy with Credit card"
           locale="auto"
           stripeKey={STRIPETOKEN}
           image="https://www.rebloc.io/img/favicon.png" //Pop-in header image
           billingAddress={false}
         />
+        <Button
+          title="Buy with ETH"
+          onClick={toggleBuyWithEthQR}
+          className='buyWithEthButton'
+        >
+          <span>
+            Buy with ETH
+          </span>
+        </Button>
       </CardContent>
         <Menu
           open={isMoreOptionsOpened}

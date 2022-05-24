@@ -149,6 +149,7 @@ export default class SchemaList extends React.Component<SchemaProps, SchemaState
           <TableFooter className={"table-footer"}>
             <TableRow>
               <TablePagination
+                onPageChange={(ev)=>{}}
                 rowsPerPageOptions={[5, 10, 25]}
                 count={this.props.schemas.length}
                 onChangePage={this.handlePageChange}

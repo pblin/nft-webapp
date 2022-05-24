@@ -16,8 +16,8 @@ import NavCard from "../components/Common/Cards/NavCard";
 import StoreIcon from "@material-ui/icons/Store";
 import PageViewIcon from "@material-ui/icons/PageviewOutlined";
 //import AddIcon from "@material-ui/icons/AddCircleOutline";
-import StorageIcon from "@material-ui/icons/Storage";
-import ExploreIcon from "@material-ui/icons/ExploreOutlined";
+// import StorageIcon from "@material-ui/icons/Storage";
+// import ExploreIcon from "@material-ui/icons/ExploreOutlined";
 
 interface HomeProps {
   auth: Auth0Authentication;
@@ -63,19 +63,25 @@ class Home extends React.Component<HomeProps> {
           navTo={'/connections'}
         />*/}
         <NavCard
+          // @ts-ignore
           title={"BROWSE THE MARKETPLACE"}
           TitleIcon={<StoreIcon/>}
           content={'Rebloc provides a marketplace to browse and sell datasets'}
           ContentIcon={<PageViewIcon/>}
-          navTo={'/marketplace'}
-        />
-        <NavCard
+          navTo={'/marketplace'} 
+          classes={undefined} 
+          history={undefined}        
+          />
+        {/* <NavCard
+          // @ts-ignore
           title={"EXPLORE YOUR DATA"}
           TitleIcon={<StorageIcon/>}
           content={'Combine your own data with other schemas, and explore the possibilities'}
           ContentIcon={<ExploreIcon/>}
-          navTo={'/dataexplorer'}
-        />
+          navTo={'/dataexplorer'} 
+          classes={undefined} 
+          history={undefined}
+          /> */}
       </React.Fragment>
     )
   }
@@ -97,11 +103,13 @@ class Home extends React.Component<HomeProps> {
          <React.Fragment>
            <Typography variant={"h4"}>{`Welcome back, ${this.props.profile['first_name']} ${this.props.profile['last_name']}`}</Typography>
            <Divider/>
+           {/* @ts-ignore*/}
            <Hidden xsDown>
              <Grid container spacing={2} justify={"flex-start"}>
                {this.renderNavCards()}
              </Grid>
            </Hidden>
+           {/* @ts-ignore*/}
            <Hidden smUp>
              <Grid container spacing={2} justify={"center"}>
                {this.renderNavCards()}

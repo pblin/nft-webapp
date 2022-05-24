@@ -164,6 +164,7 @@ class DashboardPage extends Component<DashboardProps, DashboardState> {
         if (ds != null ) {
             return (
                 <div style={{ padding: '.5em' }} className="p-col-12 p-md-3">
+                    {/** @ts-ignore */}
                     <Panel header={ds.id} style={{ textAlign: 'center' }}>
                         <div className="ddataset-name">{ds.name}</div>
                         <div className="ddataset-detail">{ds.description}</div>
@@ -272,6 +273,7 @@ class DashboardPage extends Component<DashboardProps, DashboardState> {
                             itemTemplate={this.itemTemplate} paginatorPosition={'both'} paginator={true} rows={5}
                             sortOrder={this.state.sortOrder} sortField={this.state.sortField} />
 
+                    {/** @ts-ignore */}
                     <Dialog header="Dataset Details" visible={this.state.visible} modal={true} onHide={this.setToHid}>
                         {this.renderDatasetDialogContent()}
                     </Dialog>

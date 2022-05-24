@@ -9,6 +9,7 @@ interface WizardProps {
   onNext: any;
   onPrev: any;
   currentStep: number;
+  children: any;
 }
 
 interface WizardState {}
